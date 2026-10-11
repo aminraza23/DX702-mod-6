@@ -4,27 +4,30 @@ submission if it is longer than that.
 Homework reflection 1
 
 1. In Coding Quiz 1, you are asked to find the distance of the farthest match in a set.  Is this farthest match distance too far to be a meaningful match?  How can you decide this?
-
+- The farthest match distance might be too far to be considered a meaningful match because a larger distance means the two observations are less similar based on their Z values. To determine whether the match is meaningful, I would look at the distribution of matching distances and compare the farthest distance to the others. I would also examine the Z values to see how different the matched observations are. If the distance is much larger than most of the other matches, it could mean the observations are too different to make a fair comparison. Setting a maximum acceptable distance could help prevent poor matches.
 2. In Coding Quiz 1, there are two approaches to matching: 
 (A) Picking the best match X = 0 corresponding to each X = 1 using Z values.
 (B) Using radius_neighbors to pick all matches X = 0 within a distance of 0.2 of each X = 1.
 
 Invent your own type of matching similar to 1 and 2 (or look one up on the internet), which has a different way to pick the matches in X = 0.  Clearly explain the approach you invented or found.
+- Another matching approach I would use is k-nearest neighbors matching, where each observation with X = 1 is matched to a fixed number of the closest observations with X = 0 based on their Z values. For example, instead of selecting only the single closest match, I could choose the three closest matches for each X = 1 observation. This would allow me to compare each treated observation with multiple similar untreated observations rather than relying on just one. I could then average the outcomes of those three matches to estimate the treatment effect. This approach could make the results more stable, although I would still need to check that the selected matches are similar enough to be meaningful.
 
 Homework reflection 2
 
 1. Invent an example situation that would use fixed effects.
-
+- An example of using fixed effects would be studying how working hours affect college students' grades over several semesters. Each student has different characteristics, such as study habits, motivation, and academic ability, that could affect their grades. By using student fixed effects, we can control for these characteristics that stay the same over time. This would help us better understand whether changes in working hours are associated with changes in grades for the same student.
 2. Write a Python program that performs a bootstrap simulation to find the variance in the mean of the Pareto distribution when different samples are taken.  Explain what you had to do for this.  As you make the full sample size bigger (for the same distribution), what happens to the variance of the mean of the samples?  Does it stay about the same, get smaller, or get bigger?
-
+- Answer is in the jupitar notebook. 
 Homework reflection 3
 
 1. In the event study in Coding Quiz 3, how would we go about testing for a change in the second derivative as well?
-
+- To test for a change in the second derivative in an event study, we would need to examine whether the rate of change in the trend changes after the event. The first derivative measures the slope, while the second derivative measures how quickly that slope is changing. One way to test this would be to include a squared time variable and an interaction between squared time and the treatment indicator in our regression model. If the interaction coefficient is statistically significant, it would suggest that the second derivative changed after the event. This would help us determine whether the event affected not only the direction of the trend but also how quickly the trend was increasing or decreasing.
 2. Create your own scenario that illustrates differences-in-differences. Describe the story behind the data and show whether there is a nonzero treatment effect.
-
+- An example of differences-in-differences would be studying whether a new tutoring program improves students' test scores. Imagine two schools with similar students, but only School A introduces the tutoring program. Before the program, School A has an average test score of 70, and School B has an average of 72. After the program, School A's average increases to 85, while School B's increases to 77. We can use differences-in-differences to estimate the program's effect by comparing the changes in scores between the two schools.
+- The difference-in-differences estimate is (85 − 70) − (77 − 72) = 15 − 5 = 10 points. This means the tutoring program is associated with a positive treatment effect of 10 points beyond the improvement seen at the school without tutoring. Since the estimated effect is not zero, the example shows a nonzero treatment effect. However, we would need to assume that both schools would have followed similar trends without the program for this to represent a causal effect.
 Homework reflection 4
 
 1. The Coding Quiz gives two options for instrumental variables.  For the second item (dividing the range of W into multiple ranges), explain how you did it, show your code, and discuss any issues you encountered.
-
+- Answer is in Jupitar notebook
 2. Plot the college outcome (Y) vs. the test score (X) in a small range of test scores around 80. On the plot, compare it with the Y probability predicted by logistic regression. The ground truth Y value is 0 or 1; don't just plot 0 or 1 - that will make it unreadable.  Find some way to make it look better than that.
+- Answer is in Jupitar notebook
